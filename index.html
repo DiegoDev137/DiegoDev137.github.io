@@ -1,0 +1,651 @@
+<style>
+    *{
+        margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    }
+    p {
+        font-size: 17px;
+    }
+
+
+    /* section-1 */
+    .background1 {
+        background-image: url(https://www.fundacionaquae.org/wp-content/uploads/2015/04/rios2-e1563448555353.jpg);
+        background-size: cover;
+        position: relative;
+        padding: 50px 0px 50px;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: darken;
+        background-color: #0000006e;
+    }
+
+    .title1 {
+        height: 582px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        justify-content: center;
+    }
+
+    .title1 h1 {
+        font-weight: bold;
+        font-size: 58px;
+    }
+
+    .title1 h2 {
+        font-size: 36px;
+    }
+    .contenedor {
+    padding: 60px 0px;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;}
+
+    .wave {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    /* section-2 */
+    .background2 {
+        padding: 0px 0px 50px;
+    }
+    .titulo {
+    color: #2062c5;
+    font-size: 30px;
+    padding-bottom: 70px;
+    text-align: center;
+    margin-bottom: 25px;
+font-weight: bold;}
+
+
+    .box2 {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        width: 843px;
+        gap: 25px;
+        margin: auto;
+        max-width: 100%;
+    }
+
+    .box2 h2 {
+        font-weight: bold;
+        font-size: 35px;
+        color: #2062c5;
+    }
+
+    .box2 p {
+        font-size: 17px;
+    }
+
+    /* sectin-3 */
+    .background3 {
+        padding: 70px 0px;
+        background: #b6c4eb52;
+    }
+
+    .title3 h2 {
+        color: #2062c5;
+        font-size: 35px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .bgbox3 {
+        display: flex;
+        padding-top: 60px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 65px;
+        align-items: center;
+    }
+
+    .img3 img {
+        width: 573px;
+        max-width: 100%;
+    }
+
+    .txt3 {
+        width: 568px;
+        max-width: 100%;
+        flex-direction: column;
+        display: flex;
+        gap: 31px;
+
+    }
+
+    .bx3 {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .smtitle3 {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .smtitle3 span {
+        background: #0b2372;
+        text-align: center;
+        font-weight: bold;
+        display: flex;
+        width: 50px;
+        height: 50px;
+        color: white;
+        border-radius: 50%;
+        align-items: center;
+        font-size: 26px;
+        justify-content: center;
+    }
+
+    .smtitle3 h3 {
+        margin: 0px;
+        font-weight: bold;
+        font-size: 27px;
+    }
+
+    /* section4 */
+    .bgbox4 {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 1031px;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .title4 h2 {
+        text-align: center;
+        padding-bottom: 30px;
+        color: #2062c5;
+        font-weight: bold;
+        font-size: 35px;
+    }
+
+    .background4 {
+        padding: 70px 0px;
+    }
+
+    .imagen-port {
+        position: relative;
+        box-shadow: 0 0 6px 0 rgb(0, 0, .5);
+    }
+
+    .imagen-port img {
+        width: 240px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .hover-galeria {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        transform: scale(0);
+        background: rgba(6, 19, 132, 0.7);
+        transition: transform .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .imagen-port:hover .hover-galeria {
+        transform: scale(1);
+    }
+
+    .hover-galeria img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .hover-galeria p {
+        color: white;
+        text-align: center;
+    }
+
+
+
+    /* section-5 */
+
+    .background5 {
+        padding: 60px 0px;
+        background-color: #e8ecf9;
+    }
+
+    .bx5 {
+        background: #3b7dd2;
+        display: flex;
+        max-width: 100%;
+        width: 415px;
+        gap: 20px;
+        height: 189px;
+        flex-direction: column;
+        padding: 0px 20px;
+        padding-bottom: 45px;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 0 6px 0 rgb(0, 0, 0.6);
+    }
+
+    .title5 h2 {
+        text-align: center;
+        padding-bottom: 75px;
+        color: #2062c5;
+        font-weight: bold;
+        font-size: 35px;
+    }
+
+    .txt5 {
+        text-align: center;
+        color: white;
+    }
+
+    .bgbox5 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .bx5 img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        
+    }
+    
+    .about-services {
+	background: #f2f2ff;
+	padding-bottom: 30px;
+
+}
+
+.contenedor-A {
+	width: 90%;
+	margin: auto;
+}
+
+.servicio-cont {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	gap: 50px;
+}
+
+.servicio-ind {
+	width: 325px;
+	text-align: center;
+	display: flex;
+	gap: 8px;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.servicio-ind img {
+	width: 250px;
+	margin: auto;
+}
+
+.servicio-ind h3 {
+	font-size: 22px;
+	margin: 10px 0;
+	text-align: left;
+}
+
+.servicio-ind p {
+	font-weight: 300;
+	text-align: justify;
+}
+</style>
+
+<head>
+    <!-- css header y footer-->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="" type="image/x-icon">
+
+    <!-- meta -->
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="">
+    <meta name="twitter:image" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+
+    <!-- slick -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- font-family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- javascript -->
+    <script src="javascriptcode.js"></script>
+
+    <!-- font-awesome -->
+    <script src="https://kit.fontawesome.com/388554b322.js" crossorigin="anonymous"></script>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="text/css" href="images/A.png">
+    <!-- HTML -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPevent</title>
+
+    <!-- Header -->
+    <nav class="headermd">
+        <div class="iconmage1">
+            <a href="">
+                <img src="images/Diseño sin título.png" alt="">
+            </a>
+        </div>
+        <div class='header-links'>
+            <ul class="alinks">
+                <li>
+                    <a href="">Inicio</a>
+                </li>
+                <li>
+                    <a href="#seccion1">Quienes Somos?</a>
+                </li>
+                <li>
+                    <a href="#seccion2">Funcionamineto</a>
+                </li>
+                <li>
+                    <a href="#seccion3">Localizaciones</a>
+                </li>
+                <li>
+                    <a href="#seccion4">Contactenos</a>
+                </li>
+            </ul>
+            <div class='line1'></div>
+            <div class='socialmedia1'>
+                <li><a target=”_blank” href=""><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                <li><a target=”_blank” href="https://www.instagram.com/techprevent/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                <li><a target=”_blank” href="https://www.facebook.com/profile.php?id=100095032063253"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+            </div>
+        </div>
+        <div class='burger'>
+            <div class='line1'></div>
+            <div class='line2'></div>
+            <div class='line3'></div>
+        </div>
+    </nav>
+    <script>
+        const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.header-links');
+            const navLinks = document.querySelectorAll('.header-links li');
+
+            burger.addEventListener('click', () => {
+                // toggle-header
+                nav.classList.toggle('header-active');
+
+                // link-animation
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = ''
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                    }\playlist\37i9dQZF1E4DJkwaOwFI1q
+                });
+                // burger-animation
+                burger.classList.toggle('toggle');
+
+            });
+        }
+        navSlide();
+    </script>
+</head>
+
+<body>
+    <div class='background1'>
+        <div class='container'>
+            <div class='title1'>
+                <h1>Bienvenidos a TechPrevent</h1>
+                <h2>Quieres ser parte del futuro?</h2>
+            </div>
+        </div>
+        <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(255, 255, 255);"></path>
+            </svg>
+        </div>
+    </div>
+    <div class='background2'>
+        <h2 id="seccion2"></h2>
+        <div class='container'>
+            <div class='box2'>
+                <h2>Que es TechPrevent?</h2>
+                <p>Techpevent es un sistema avanzado basado en bollas y el poderoso Arduino, programado para medir los
+                    niveles del agua en
+                    tiempo real. Estas bollas están estratégicamente distribuidas a lo largo de todo el río, en áreas
+                    propensas a
+                    inundaciones y otros desastres naturales. Cuando detectan un aumento peligroso del nivel del agua,
+                    envían una señal de
+                    texto a los pobladores, alertándolos de manera inmediata sobre el peligro inminente.</p>
+            </div>
+        </div>
+    </div>
+    <div class='background3'>
+        <div class='container'>
+            <div class='title3'>
+                <h2>Funcionamiento</h2>
+            </div>
+            <div class='bgbox3'>
+                <div class='img3'>
+                    <img src="images/section3.png" alt="">
+                </div>
+                <div class='txt3'>
+                    <div class='bx3'>
+                        <div class='smtitle3'>
+                            <span>1</span>
+                            <h3>Arduino</h3>
+                        </div>
+                        <p>Arduino es una plataforma electrónica programable que utiliza un microcontrolador para
+                            interactuar con sensores y
+                            actuadores. En el caso de Techpevent, se programa para recibir señales de las bollas que
+                            miden el nivel del agua y
+                            enviar alertas de texto a los pobladores cuando se detecta un aumento peligroso.</p>
+                    </div>
+                    <div class='bx3'>
+                        <div class='smtitle3'>
+                            <span>2</span>
+                            <h3>Bollas</h3>
+                        </div>
+                        <p>Las bollas son dispositivos flotantes con sensores que miden el nivel del agua. Transmiten
+                            esta información al Arduino,
+                            que analiza los datos y activa alertas si se detecta un incremento peligroso. Las bollas se
+                            distribuyen estratégicamente
+                            a lo largo del río para proporcionar una detección temprana de desastres naturales y salvar
+                            vidas humanas y animales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 id="seccion3"></h2>
+    </div>
+    <div class='background4'>
+        <div class='container'>
+            <div class='title4'>
+                <h2>Rios afectados</h2>
+            </div>
+            <div class='bgbox4'>
+                <a href="">
+                    <div class="imagen-port">
+                        <img src="https://vozdeguanacaste.com/storage/2022/07/JBYjswoo.jpeg" alt="">
+                        <div class="hover-galeria">
+                            <img src="images/cursor.png" alt="">
+                            <p>Ver más</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="imagen-port">
+                        <img src="https://www.presidencia.go.cr/bicentenario/wp-content/uploads/2021/07/WhatsApp-Image-2021-07-23-at-11.46.47-AM.jpeg" alt="">
+                        <div class="hover-galeria">
+                            <img src="images/cursor.png" alt="">
+                            <p>Ver más</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="imagen-port">
+                    <img src="https://ojoalclima.com/wp-content/uploads/2019/11/slr-coastal_dem__2100__rcp45__p50__return_level_1__kopp_2014-2019-11-20T17_44_03.981Z-1024x576.png" alt="">
+                    <div class="hover-galeria">
+                        <img src="images/cursor.png" alt="">
+                        <p>Ver más</p>
+                    </div>
+                </div>
+            </a>
+            <div class="imagen-port">
+                <img src="https://www.biodiversidadla.org/var/biodiversidadla_org/storage/images/noticias/se-compra-y-vende-agua-como-propiedad-pero-los-rios-deben-tener-derecho-a-estar-libres-de-contaminacion-y-represas/1206383-1-esl-ES/Se-compra-y-vende-agua-como-propiedad-pero-los-rios-deben-tener-derecho-a-estar-libres-de-contaminacion-y-represas.jpg" alt="">
+                <div class="hover-galeria">
+                    <img src="images/cursor.png" alt="">
+                    <p>Ver más</p>
+                </div>
+            </div>
+        </a>
+                <a href="">
+                    <div class="imagen-port">
+                        <img src="https://www.crhoy.com/wp-content/uploads/2022/10/jaco-1.gif" alt="">
+                        <div class="hover-galeria">
+                            <img src="images/cursor.png" alt="">
+                            <p>Ver más</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="imagen-port">
+                        <img src="https://www.tec.ac.cr/hoyeneltec/sites/default/files/media/img/main/rio-la-estrella.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="images/cursor.png" alt="">
+                            <p>Ver más </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="imagen-port">
+                        <img src="https://www.larepublica.net/storage/images/2022/10/06/20221006114201.092.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="images/cursor.png" alt="">
+                            <p>Ver más</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="imagen-port">
+                        <img src="https://elperiodicocr.com/wp-content/uploads/2020/10/politica-costa-rica-nacientes-rios-parques.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="images/cursor.png" alt="">
+                            <p>Ver más</p>
+                        </div>
+                    </div>
+                </a>
+                <h2 id="seccion1"></h2>
+            </div>
+        </div>
+    </div>
+    <div class='background5'>
+        <div class='container'>
+            <div class='title5'>
+                <h2>Equipo del proyecto</h2>
+            </div>
+            <div class='bgbox5'>
+                <div class='bx5'>
+                    <img src="https://i.pinimg.com/750x/3c/fd/a9/3cfda909806c63bacfd9c6cb32b1d274.jpg" alt="">
+                    <div class='txt5'>
+                        <h4>Diego Henriquez Almanza</h4>
+                        <p>Programador en jefe del proyecto, creador de y encargado del diseño grafico.</p>
+                    </div>
+                </div>
+                <div class='bx5'>
+                    <img src="https://i.pinimg.com/750x/53/90/f3/5390f39f0b49b9e11cd6c59b48cb7add.jpg" alt="">
+                    <div class='txt5'>
+                        <h4>Arafath</h4>
+                        <p>Creador de la idea fundamental del proyecto Techprevent.</p>
+                    </div>
+                </div>
+                <div class='bx5'>
+                    <img src="https://i.pinimg.com/750x/42/20/fc/4220fcf57f7fcb129311ff18a5b868a6.jpg" alt="">
+                    <div class='txt5'>
+                        <h4>Jorge Antonio Jiménez Suérez</h4>
+                        <p>asistente de programacion y finaciador del proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="about-services">
+        <div class="contenedor">
+            <h2 class="titulo">Ventajas de Comprar nuestra idea</h2>
+            <div class="servicio-cont">
+                <div class="servicio-ind">
+                    <img src="images/undraw_percentages_re_a1ao.svg"  style="height: 200px;" >
+                    <h3>Detección temprana de desastres</h3>
+                    <p>ETechpevent proporciona una detección temprana y precisa de desastres naturales, como inundaciones. Esto permite a los pobladores recibir alertas de texto inmediatas, lo que les brinda tiempo suficiente para tomar medidas preventivas y evacuar en caso necesario. Este beneficio puede ayudar a salvar vidas humanas y minimizar los daños materiales.
+                    </p>
+                </div>
+                <div class="servicio-ind">
+                    <img src="images/undraw_product_teardown_re_m1pc.svg" style ="height: 200px;">
+                    <h3>Protección de la vida silvestre</h3>
+                    <p>Techpevent no solo se preocupa por la seguridad humana, sino también por la vida silvestre. Al proporcionar alertas tempranas, el sistema ofrece la oportunidad de evacuar a los animales en peligro, salvaguardando la biodiversidad y preservando especies en entornos propensos a desastres naturales. Este enfoque responsable hacia la protección de la fauna puede resonar positivamente con aquellos interesados en la conservación del medio ambiente.
+                    </p>
+                </div>
+                <div class="servicio-ind">
+                    <img src="images/undraw_certificate_re_yadi.svg" style="height: 200px;">
+                    <h3>Solución tecnológica avanzada y confiable</h3>
+                    <p>Techpevent utiliza tecnología avanzada, como bollas con sensores y la plataforma Arduino, para medir y monitorear los niveles del agua de manera precisa y constante. Esta solución tecnológica confiable brinda tranquilidad a los compradores, ya que pueden confiar en la precisión y la eficiencia del sistema para proporcionar alertas oportunas y salvar vidas. Además, la combinación de tecnología accesible y de código abierto, como Arduino, ofrece la posibilidad de adaptar y expandir el sistema de acuerdo a las necesidades específicas de cada comprador.
+                    </p>
+                </div>
+            </div>
+            <h2 id="seccion4"></h2>
+        </div>
+    </section>
+</body>
+<h2 id="seccion3"></h2>
+<footer>
+    <div class='backgroundfooter'>
+        <div class='container'>
+            <div class='bgfooter'>
+                <div class='iconfooter'>
+                    <img src="images/Diseño sin título.png" alt="">
+                </div>
+                <div class='directionfooter'>
+                    <p style="color: #ffffff;">Canton Central, San José Costa Rica</p>
+                </div>
+                <div class='socialmediafooter'>
+                    <a target=”_blank” href=""><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                    <a target=”_blank” href="https://www.instagram.com/techprevent/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a target=”_blank” href="https://www.facebook.com/profile.php?id=100095032063253"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                    <a target="_blank" href="URL_DE_TU_PERFIL_DE_TWITTER">
+                        <i class="fab fa-twitter"></i>
+                      </a>                      
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
