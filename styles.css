@@ -132,15 +132,19 @@
     @media only screen and (max-width: 991px) {
 
         /* header-responsive */
-        nav.headermd {
-            justify-content: space-between;
-        }
+
         nav.headermd {
             margin-top: -70px !important;
         }
+
         body {
             margin-top: 70px !important;
         }
+        
+        nav.headermd {
+            justify-content: space-between;
+        }
+
         .iconmage1 img {
             width: 75PX;
         }
