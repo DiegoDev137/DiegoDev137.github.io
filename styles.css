@@ -28,7 +28,7 @@
     }
 
     .iconmage1 img {
-        width: 155px;
+        width: 100px;
         max-width: 100%;
     }
 
@@ -66,7 +66,7 @@
     }
 
     .iconmage1 {
-        width: 123px;
+        width: 600px;
         max-width: 100%;
     }
 
@@ -86,7 +86,6 @@
     /* footer */
     .backgroundfooter {
         padding: 45px 0px;
-        background-color: black;
     }
 
     .bgfooter {
@@ -94,7 +93,6 @@
         flex-direction: column;
         gap: 21px;
         align-items: center;
-        background-color: black;
     }
 
     .iconfooter img {
@@ -107,7 +105,7 @@
     }
 
     .socialmediafooter i {
-        color: rgb(255, 255, 255);
+        color: black;
         font-size: 33px;
     }
 
@@ -137,7 +135,12 @@
         nav.headermd {
             justify-content: space-between;
         }
-
+        nav.headermd {
+            margin-top: -70px !important;
+        }
+        body {
+            margin-top: 70px !important;
+        }
         .iconmage1 img {
             width: 75PX;
         }
