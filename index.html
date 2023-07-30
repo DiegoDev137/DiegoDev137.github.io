@@ -538,6 +538,37 @@ font-weight: bold;}
                         <div class="hover-galeria">
                             <img src="images/cursor.png" alt="">
                             <p>Ver más</p>
+                            <title>Animación de imagen</title>
+                            <style>
+                                #imagen {
+                                    width: 100px;
+                                    height: 100px;
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    cursor: pointer;
+                                    transition: transform 1s;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <img id="imagen" src="imagen.jpg">
+                        
+                            <script>
+                                let isAmpliado = false;
+                                const imagen = document.getElementById('imagen');
+                        
+                                imagen.addEventListener('click', function() {
+                                    if (isAmpliado) {
+                                        imagen.style.transform = 'translate(-50%, -50%)';
+                                        isAmpliado = false;
+                                    } else {
+                                        imagen.style.transform = 'scale(1.5) translate(-50%, -50%)';
+                                        isAmpliado = true;
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                 </a>
