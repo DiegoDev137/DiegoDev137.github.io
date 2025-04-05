@@ -355,6 +355,60 @@ iframe {
     .backvideo1 {
         padding: 70px 0px;
         text-align: center;
+    
+    }
+    .papeleta-votacion {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 5px;
+    }
+    
+    .opcion-voto {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+    }
+    
+    .opcion-voto h3 {
+        color: #2062c5;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .opcion-voto p {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .foto-candidato img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+    
+    .instruccion-voto {
+        font-weight: bold;
+        margin-top: 15px;
+    }
+    
+    .casilla-voto {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #333;
+        margin: 10px auto;
+        cursor: pointer;
+    }
+    
+    .casilla-voto:hover {
+        background-color: #f0f0f0;
     }
 </style>
 
@@ -421,29 +475,48 @@ iframe {
     </div>
     <section class="about-services">
         <div class="contenedor">
-            <h2 class="titulo">Informacion de los Partidos</h2>
+            <h2 class="titulo">Elección del Comité Ejecutivo</h2>
             <div class="servicio-cont">
-                <div class="servicio-ind">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica_%28state%29.svg/255px-Flag_of_Costa_Rica_%28state%29.svg.png" >
-                    <h3> </h3>
-                    <p>
-                    </p>
-                </div>
-                <div class="servicio-ind">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica_%28state%29.svg/255px-Flag_of_Costa_Rica_%28state%29.svg.png">
-                    <h3></h3>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="servicio-ind">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica_%28state%29.svg/255px-Flag_of_Costa_Rica_%28state%29.svg.png">
-                    <h3></h3>
-                    <p> 
-                    </p>
+                <!-- Formulario de votación estilo papeleta -->
+                <div class="papeleta-votacion">
+                    <div class="opcion-voto">
+                        <h3>PARTIDO AZUL</h3>
+                        <p>Lema: "Unidos por el cambio estudiantil"</p>
+                        <div class="foto-candidato">
+                            <img src="https://via.placeholder.com/150" alt="Candidato Partido Azul">
+                        </div>
+                        <div class="instruccion-voto">
+                            <p>VOTE CON UNA <strong>X</strong></p>
+                            <div class="casilla-voto"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="opcion-voto">
+                        <h3>PARTIDO VERDE</h3>
+                        <p>Lema: "Innovación para todos"</p>
+                        <div class="foto-candidato">
+                            <img src="https://via.placeholder.com/150" alt="Candidato Partido Verde">
+                        </div>
+                        <div class="instruccion-voto">
+                            <p>VOTE CON UNA <strong>X</strong></p>
+                            <div class="casilla-voto"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="opcion-voto">
+                        <h3>PARTIDO ROJO</h3>
+                        <p>Lema: "Tradición y progreso"</p>
+                        <div class="foto-candidato">
+                            <img src="https://via.placeholder.com/150" alt="Candidato Partido Rojo">
+                        </div>
+                        <div class="instruccion-voto">
+                            <p>VOTE CON UNA <strong>X</strong></p>
+                            <div class="casilla-voto"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-           
+        </div>
     </section>
 </body>
 <h2 id="seccion3"></h2>
