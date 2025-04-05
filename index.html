@@ -401,45 +401,6 @@ iframe {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechPevent</title>
 
-    <!-- Header -->
-    <nav class="headermd">
-        <div class="iconmage1">
-            <a href="">
-            <img src="images/Captura__1_-removebg-preview.png" alt="">
-            </a>
-        </div>
-        
-        <div class='burger'>
-            <div class='line1'></div>
-            <div class='line2'></div>
-            <div class='line3'></div>
-        </div>
-    </nav>
-    <script>
-        const navSlide = () => {
-            const burger = document.querySelector('.burger');
-            const nav = document.querySelector('.header-links');
-            const navLinks = document.querySelectorAll('.header-links li');
-
-            burger.addEventListener('click', () => {
-                // toggle-header
-                nav.classList.toggle('header-active');
-
-                // link-animation
-                navLinks.forEach((link, index) => {
-                    if (link.style.animation) {
-                        link.style.animation = ''
-                    } else {
-                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
-                    }
-                });
-                // burger-animation
-                burger.classList.toggle('toggle');
-
-            });
-        }
-        navSlide();
-    </script>
 </head>
 
 <body>
