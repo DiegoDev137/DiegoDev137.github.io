@@ -1,4 +1,105 @@
+
 <style>
+    *{
+        margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    }
+    p {
+        font-size: 17px;
+    }
+
+
+    /* section-1 */
+    .background1 {
+        background-image: url(https://scontent.fsjo14-1.fna.fbcdn.net/v/t39.30808-6/435926917_942519854544466_7233871291080547101_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4fMvpLDxE78Q7kNvwEYj5z7&_nc_oc=AdkKHaH-RWCgklSLEf47JPXKPRbgh9wYitiElsajabVQIJRK4qmCbXm9b02MNorCo5k&_nc_zt=23&_nc_ht=scontent.fsjo14-1.fna&_nc_gid=Ww3DY5GOumfLC_BpziFueQ&oh=00_AYHl_uiRB-DvYtPUYQ11ZqZWhe9rJ_1uFLKmU7Fz4J_sew&oe=67F6368A);
+        background-size: cover;
+        position: relative;
+        padding: 50px 0px 50px;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: darken;
+        background-color: #0000006e;
+    }
+
+    .title1 {
+        height: 582px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        justify-content: center;
+    }
+
+    .title1 h1 {
+        font-weight: bold;
+        font-size: 58px;
+    }
+
+    .title1 h2 {
+        font-size: 36px;
+    }
+    .contenedor {
+    padding: 60px 0px;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;}
+
+    .wave {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    /* section-2 */
+    .background2 {
+        padding: 0px 0px 50px;
+    }
+    .titulo {
+    color: #2062c5;
+    font-size: 30px;
+    padding-bottom: 70px;
+    text-align: center;
+    margin-bottom: 25px;
+font-weight: bold;}
+
+
+    .box2 {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        width: 843px;
+        gap: 25px;
+        margin: auto;
+        max-width: 100%;
+    }
+
+    .box2 h2 {
+        font-weight: bold;
+        font-size: 35px;
+        color: #2062c5;
+    }
+
+    .box2 p {
+        font-size: 17px;
+    }
+
+    /* sectin-3 */
+    .background3 {
+        padding: 70px 0px;
+        background: #b6c4eb52;
+    }
+
+    .title3 h2 {
+        color: #2062c5;
+        font-size: 35px;
+        font-weight: bold;
+        text-align: center;
+    }
+
     *{
         margin: 0px;
     padding: 0px;
@@ -410,8 +511,443 @@ iframe {
     .casilla-voto:hover {
         background-color: #f0f0f0;
     }
-</style>
+    .casilla-voto {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #333;
+    margin: 10px auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    user-select: none; /* Evita que el texto se seleccione al hacer clic */
+}
 
+.casilla-voto:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+/* Estilos para el botón de enviar */
+.contenedor-boton {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 20px;
+}
+
+.boton-enviar {
+    position: relative;
+    background: linear-gradient(135deg, #2062c5, #0b2372);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(32, 98, 197, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.boton-enviar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(32, 98, 197, 0.4);
+    background: linear-gradient(135deg, #0b2372, #2062c5);
+}
+
+.boton-enviar:active {
+    transform: translateY(1px);
+}
+
+.icono-boton {
+    transition: all 0.3s ease;
+}
+
+.boton-enviar:hover .icono-boton {
+    transform: translateX(5px);
+}
+
+/* Efecto de onda al hacer clic */
+@keyframes onda {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+.boton-enviar:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.boton-enviar:focus:not(:active)::after {
+    animation: onda 0.6s ease-out;
+}
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.tooltip:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(32, 98, 197, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(32, 98, 197, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(32, 98, 197, 0); }
+}
+
+.opcion-voto {
+    transition: all 0.3s;
+    position: relative;
+}
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+</style>
+<script>
+function marcarVoto(elemento) {
+    // Si ya tiene una X, la quitamos
+    if (elemento.textContent === "X") {
+        elemento.textContent = "";
+        elemento.style.color = "transparent";
+    } else {
+        // Si no tiene X, la agregamos
+        elemento.textContent = "X";
+        elemento.style.color = "black";
+        elemento.style.fontWeight = "bold";
+        elemento.style.fontSize = "20px";
+        elemento.style.display = "flex";
+        elemento.style.justifyContent = "center";
+        elemento.style.alignItems = "center";
+    }
+    
+    // Desmarcar todas las otras casillas en la misma papeleta
+    const papeleta = elemento.closest('.papeleta-votacion');
+    const todasLasCasillas = papeleta.querySelectorAll('.casilla-voto');
+    
+    todasLasCasillas.forEach(casilla => {
+        if (casilla !== elemento) {
+            casilla.textContent = "";
+            casilla.style.color = "transparent";
+        }
+    });
+}
+function marcarVoto(elemento) {
+    // Si ya tiene una X, la quitamos
+    if (elemento.textContent === "X") {
+        elemento.textContent = "";
+        elemento.style.color = "transparent";
+    } else {
+        // Si no tiene X, la agregamos
+        elemento.textContent = "X";
+        elemento.style.color = "black";
+        elemento.style.fontWeight = "bold";
+        elemento.style.fontSize = "20px";
+        elemento.style.display = "flex";
+        elemento.style.justifyContent = "center";
+        elemento.style.alignItems = "center";
+    }
+    
+    // Desmarcar todas las otras casillas en la misma papeleta
+    const papeleta = elemento.closest('.papeleta-votacion');
+    const todasLasCasillas = papeleta.querySelectorAll('.casilla-voto');
+    
+    todasLasCasillas.forEach(casilla => {
+        if (casilla !== elemento) {
+            casilla.textContent = "";
+            casilla.style.color = "transparent";
+        }
+    });
+}
+function marcarVoto(elemento) {
+    // Animación de selección
+    elemento.parentElement.parentElement.animate([
+        { backgroundColor: 'transparent' },
+        { backgroundColor: 'rgba(32, 98, 197, 0.1)' },
+        { backgroundColor: 'transparent' }
+    ], {
+        duration: 500,
+        easing: 'ease-out'
+    });
+
+    // Resto de la función existente...
+}
+function enviarVoto() {
+    // ... validación existente ...
+
+    // Efecto confeti
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+
+    // ... resto del código existente ...
+}
+function enviarVoto() {
+    // ... validación existente ...
+
+    // Mostrar barra de progreso
+    const boton = document.querySelector('.boton-enviar');
+    boton.innerHTML = '<div class="progress-bar"></div>';
+    boton.style.position = 'relative';
+    boton.style.overflow = 'hidden';
+    
+    const progressBar = document.createElement('div');
+    progressBar.className = 'progress-bar';
+    boton.appendChild(progressBar);
+    
+    let width = 0;
+    const interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            // Mostrar mensaje de éxito
+            boton.innerHTML = '<i class="fas fa-check"></i> Voto enviado';
+            boton.style.background = "#4CAF50";
+            
+            // Efecto confeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        } else {
+            width += 5;
+            progressBar.style.width = width + '%';
+            progressBar.style.height = '100%';
+            progressBar.style.position = 'absolute';
+            progressBar.style.left = '0';
+            progressBar.style.top = '0';
+            progressBar.style.background = 'rgba(255, 255, 255, 0.3)';
+            progressBar.style.transition = 'width 0.1s';
+        }
+    }, 30);
+    
+    // ... deshabilitar casillas ...
+}
+function enviarVoto() {
+    // ... validación existente ...
+
+    // Mostrar barra de progreso
+    const boton = document.querySelector('.boton-enviar');
+    boton.innerHTML = '<div class="progress-bar"></div>';
+    boton.style.position = 'relative';
+    boton.style.overflow = 'hidden';
+    
+    const progressBar = document.createElement('div');
+    progressBar.className = 'progress-bar';
+    boton.appendChild(progressBar);
+    
+    let width = 0;
+    const interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            // Mostrar mensaje de éxito
+            boton.innerHTML = '<i class="fas fa-check"></i> Voto enviado';
+            boton.style.background = "#4CAF50";
+            
+            // Efecto confeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        } else {
+            width += 5;
+            progressBar.style.width = width + '%';
+            progressBar.style.height = '100%';
+            progressBar.style.position = 'absolute';
+            progressBar.style.left = '0';
+            progressBar.style.top = '0';
+            progressBar.style.background = 'rgba(255, 255, 255, 0.3)';
+            progressBar.style.transition = 'width 0.1s';
+        }
+    }, 30);
+    
+    // ... deshabilitar casillas ...
+}
+// Agrega esto al final de tu JavaScript
+document.querySelectorAll('.opcion-voto').forEach(opcion => {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = 'Haz clic para seleccionar';
+    opcion.appendChild(tooltip);
+    
+    opcion.addEventListener('mouseenter', () => {
+        tooltip.style.opacity = '1';
+        tooltip.style.visibility = 'visible';
+    });
+    
+    opcion.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+        tooltip.style.visibility = 'hidden';
+    });
+});
+function marcarVoto(elemento) {
+    // ... código existente ...
+    
+    // Agregar efecto de pulso continuo
+    const opcionSeleccionada = elemento.closest('.opcion-voto');
+    opcionSeleccionada.style.animation = 'pulse 2s infinite';
+    
+    // Quitar el efecto de las otras opciones
+    document.querySelectorAll('.opcion-voto').forEach(opcion => {
+        if (opcion !== opcionSeleccionada) {
+            opcion.style.animation = 'none';
+        }
+    });
+}
+function enviarVoto() {
+    const casillaMarcada = document.querySelector('.casilla-voto[style*="color: black"]');
+    
+    if (!casillaMarcada) {
+        // Animación de error
+        document.querySelectorAll('.opcion-voto').forEach(opcion => {
+            opcion.animate([
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-5px)' },
+                { transform: 'translateX(5px)' },
+                { transform: 'translateX(0)' }
+            ], {
+                duration: 300,
+                iterations: 2
+            });
+        });
+        
+        // Mostrar icono de error
+        const errorIcon = document.createElement('div');
+        errorIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i> Selecciona una opción';
+        errorIcon.style.color = '#c52020';
+        errorIcon.style.marginTop = '10px';
+        errorIcon.style.textAlign = 'center';
+        
+        const contenedorBoton = document.querySelector('.contenedor-boton');
+        const existingError = document.querySelector('.error-message');
+        if (existingError) existingError.remove();
+        
+        errorIcon.className = 'error-message';
+        contenedorBoton.appendChild(errorIcon);
+        
+        return;
+    }
+    
+    // ... resto del código ...
+}
+function enviarVoto() {
+    // ... validación existente ...
+    
+    // Mostrar spinner
+    const boton = document.querySelector('.boton-enviar');
+    boton.innerHTML = '<div class="spinner"></div> Procesando...';
+    boton.disabled = true;
+    
+    // Simular envío al servidor (reemplazar con llamada real)
+    setTimeout(() => {
+        // Ocultar spinner y mostrar éxito
+        boton.innerHTML = '<i class="fas fa-check"></i> Voto registrado';
+        boton.style.background = "#4CAF50";
+        
+        // Efecto confeti
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+        
+        // Deshabilitar casillas
+        document.querySelectorAll('.casilla-voto').forEach(casilla => {
+            casilla.style.pointerEvents = "none";
+        });
+    }, 2000);
+}
+// Función principal para marcar/desmarcar
+function marcarVoto(elemento) {
+    // Quitar todas las X primero
+    document.querySelectorAll('.casilla-voto').forEach(casilla => {
+        casilla.textContent = "";
+        casilla.style.color = "transparent";
+        casilla.parentElement.parentElement.style.animation = "none";
+    });
+    
+    // Marcar la seleccionada
+    elemento.textContent = "X";
+    elemento.style.color = "black";
+    elemento.style.fontWeight = "bold";
+    elemento.style.fontSize = "20px";
+    
+    // Destacar la opción seleccionada
+    elemento.closest('.opcion-voto').style.animation = "pulse 2s infinite";
+}
+
+// Función básica para enviar
+function enviarVoto() {
+    const seleccionada = document.querySelector('.casilla-voto[style*="color: black"]');
+    if (!seleccionada) {
+        alert("Por favor, selecciona una opción antes de enviar tu voto.");
+        return;
+    }
+    
+    const boton = document.querySelector('.boton-enviar');
+    boton.innerHTML = '<i class="fas fa-check"></i> Voto enviado';
+    boton.disabled = true;
+    boton.style.background = "#4CAF50";
+    
+    // Deshabilitar todas las casillas
+    document.querySelectorAll('.casilla-voto').forEach(c => {
+        c.onclick = null;
+        c.style.cursor = "default";
+    });
+}
+</script>
 <head>
 
     <!-- meta -->
@@ -421,15 +957,23 @@ iframe {
     <meta property="og:title" content="">
     <meta property="og:description" content="">
     <meta property="og:url" content="">
-
+<!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- slick -->
+     <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<!-- Canvas Confetti para efecto de confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <!-- Animate.css para animaciones -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- font-family -->
+     <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -479,44 +1023,48 @@ iframe {
             <div class="servicio-cont">
                 <!-- Formulario de votación estilo papeleta -->
                 <div class="papeleta-votacion">
-                    <div class="opcion-voto">
-                        <h3>PRIME</h3>
-                        <p>Lema: "Unidos por el cambio estudiantil"</p>
-                        <div class="foto-candidato">
-                            <img src="/Imagenes/PRIME.jpg" alt="Candidato Partido Azul">
-                        </div>
-                        <div class="instruccion-voto">
-                            <p>VOTE CON UNA <strong>X</strong></p>
-                            <div class="casilla-voto"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="opcion-voto">
-                        <h3>Starts</h3>
-                        <p>Lema: "Innovación para todos"</p>
-                        <div class="foto-candidato">
-                            <img src="/Imagenes/Starts.jpg" alt="Candidato Partido Verde">
-                        </div>
-                        <div class="instruccion-voto">
-                            <p>VOTE CON UNA <strong>X</strong></p>
-                            <div class="casilla-voto"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="opcion-voto">
-                        <h3>SAM</h3>
-                        <p>Lema: "Tradición y progreso"</p>
-                        <div class="foto-candidato">
-                            <img src="/Imagenes/Sam.jpg" alt="Candidato Partido Rojo">
-                        </div>
-                        <div class="instruccion-voto">
-                            <p>VOTE CON UNA <strong>X</strong></p>
-                            <div class="casilla-voto"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div class="opcion-voto">
+    <h3>PRIME</h3>
+    <p>Lema: "Unidos por el cambio estudiantil"</p>
+    <div class="foto-candidato">
+        <img src="/Imagenes/PRIME.jpg" alt="Candidato Partido Azul">
+    </div>
+    <div class="instruccion-voto">
+        <p>VOTE CON UNA <strong>X</strong></p>
+        <div class="casilla-voto" onclick="marcarVoto(this)"></div>
+    </div>
+</div>
+<div class="opcion-voto">
+    <h3>starts</h3>
+    <p>Lema: "Unidos por el cambio estudiantil"</p>
+    <div class="foto-candidato">
+        <img src="/Imagenes/PRIME.jpg" alt="Candidato Partido Azul">
+    </div>
+    <div class="instruccion-voto">
+        <p>VOTE CON UNA <strong>X</strong></p>
+        <div class="casilla-voto" onclick="marcarVoto(this)"></div>
+    </div>
+</div>
+<div class="opcion-voto">
+    <h3>sam</h3>
+    <p>Lema: "Unidos por el cambio estudiantil"</p>
+    <div class="foto-candidato">
+        <img src="/Imagenes/PRIME.jpg" alt="Candidato Partido Azul">
+    </div>
+    <div class="instruccion-voto">
+        <p>VOTE CON UNA <strong>X</strong></p>
+        <div class="casilla-voto" onclick="marcarVoto(this)"></div>
+    </div>
+</div>
         </div>
+        <div class="contenedor-boton">
+    <button class="boton-enviar" onclick="enviarVoto()">
+        <span class="texto-boton">Enviar mi voto</span>
+        <span class="icono-boton">
+            <i class="fas fa-paper-plane"></i>
+        </span>
+    </button>
+</div>
     </section>
 </body>
 <h2 id="seccion3"></h2>
