@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Skillify - Aprende y Progresa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://i.pinimg.com/1200x/25/95/8c/25958cfb7d0c370648e16573a9f2c9de.jpg');
+            background-size: cover;
+            position: relative;
+            padding: 50px 0px 50px;
+            background-attachment: fixed;
+            background-blend-mode: darken;
+            background-color: #0000006e;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #F59E0B, #D97706);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary {
+            background: linear-gradient(to right, #6B7280, #4B5563);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-radius: 1rem;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .option-btn {
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .option-btn:hover {
+            transform: scale(1.02);
+            background-color: #E5E7EB;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #D1D5DB;
+            border-radius: 5px;
+        }
+        .progress {
+            height: 100%;
+            background: #F59E0B;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+        .question-item {
+            border: 1px solid #F59E0B;
+            background-color: #FFFFFF;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input, select {
+            background-color: #FFFFFF;
+            border: 1px solid #D1D5DB;
+        }
+        input:focus, select:focus {
+            border-color: #F59E0B;
+            ring: 2px #F59E0B;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="card p-8 w-full max-w-3xl rounded-2xl">
+        <h1 class="text-4xl font-bold text-center text-gray-900 mb-8">Quiz Skillify</h1>
+        <div class="w-full mb-6">
+            <div class="text-sm text-gray-600 mb-1">Progreso: <span id="xp">0 XP</span></div>
+            <div class="progress-bar">
+                <div id="progress" class="progress" style="width: 0%"></div>
+            </div>
+        </div>
+        <div class="flex justify-center space-x-6 mb-8">
+            <button id="show-quiz-btn" class="btn-primary text-white py-3 px-6 rounded-xl font-semibold">Jugar Quiz</button>
+            <button id="show-manage-btn" class="btn-secondary text-white py-3 px-6 rounded-xl font-semibold">Gestionar Preguntas</button>
+        </div>
+        <div id="quiz-container">
+            <h2 id="question" class="text-2xl font-semibold text-gray-900 mb-6"></h2>
+            <div id="options" class="space-y-3"></div>
+            <div id="feedback" class="mt-6 text-center text-lg"></div>
+            <button id="next-btn" class="mt-8 w-full btn-primary text-white py-3 rounded-xl font-semibold hidden">Siguiente</button>
+        </div>
+        <div id="score-container" class="hidden mt-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900">¡Quiz Completado!</h2>
+            <p id="final-score" class="text-xl text-gray-700 mt-4"></p>
+            <p id="reward" class="text-lg text-gray-600 mt-2">¡Ganaste 0 XP y 0 estrellas! 🎉</p>
+            <button id="restart-btn" class="mt-6 btn-primary text-white py-3 px-6 rounded-xl font-semibold">Reiniciar Quiz</button>
+        </div>
+        <div id="manage-container" class="hidden">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Gestionar Preguntas</h2>
+            <div id="question-form" class="space-y-5">
+                <div>
+                    <label for="form-question" class="block text-lg font-medium text-gray-700">Pregunta:</label>
+                    <input type="text" id="form-question" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Escribe tu pregunta aquí" required>
+                </div>
+                <div>
+                    <label for="form-option1" class="block text-lg font-medium text-gray-700">Opción 1:</label>
+                    <input type="text" id="form-option1" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 1" required>
+                </div>
+                <div>
+                    <label for="form-option2" class="block text-lg font-medium text-gray-700">Opción 2:</label>
+                    <input type="text" id="form-option2" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 2" required>
+                </div>
+                <div>
+                    <label for="form-option3" class="block text-lg font-medium text-gray-700">Opción 3:</label>
+                    <input type="text" id="form-option3" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 3" required>
+                </div>
+                <div>
+                    <label for="form-option4" class="block text-lg font-medium text-gray-700">Opción 4:</label>
+                    <input type="text" id="form-option4" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 4" required>
+                </div>
+                <div>
+                    <label for="form-correct" class="block text-lg font-medium text-gray-700">Respuesta Correcta:</label>
+                    <select id="form-correct" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" required>
+                        <option value="">Selecciona la respuesta correcta</option>
+                        <option value="0">Opción 1</option>
+                        <option value="1">Opción 2</option>
+                        <option value="2">Opción 3</option>
+                        <option value="3">Opción 4</option>
+                    </select>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="save-question-btn" class="w-full btn-primary text-white py-3 rounded-xl font-semibold">Guardar Pregunta</button>
+                    <button id="cancel-edit-btn" class="hidden w-full btn-secondary text-white py-3 rounded-xl font-semibold">Cancelar Edición</button>
+                </div>
+                <div id="form-feedback" class="mt-4 text-center text-lg"></div>
+            </div>
+            <div id="question-list" class="mt-8 space-y-4"></div>
+        </div>
+    </div>
+    <script>
+        const defaultQuestions = [
+            {
+                question: "¿Cuál fue una de las causas principales de la crisis económica en Costa Rica durante los años 30?",
+                options: ["La caída en las exportaciones agrícolas", "La guerra civil", "El aumento de impuestos", "La industrialización acelerada"],
+                correct: "La caída en las exportaciones agrícolas",
+                isDefault: true
+            },
+            {
+                question: "¿En qué año se aprobó el derecho al voto para las mujeres en Costa Rica?",
+                options: ["1925", "1949", "1955", "1936"],
+                correct: "1949",
+                isDefault: true
+            },
+            {
+                question: "La globalización se refiere principalmente a:",
+                options: ["La expansión del comercio y la comunicación entre países", "La construcción de muros fronterizos", "El aislamiento económico", "La creación de nuevas leyes internas"],
+                correct: "La expansión del comercio y la comunicación entre países",
+                isDefault: true
+            },
+            {
+                question: "¿Cuál es la función principal de la Asamblea Legislativa en Costa Rica?",
+                options: ["Crear leyes y reformas legales", "Dirigir el ejército", "Administrar hospitales", "Organizar eventos culturales"],
+                correct: "Crear leyes y reformas legales",
+                isDefault: true
+            },
+            {
+                question: "La participación ciudadana activa implica:",
+                options: ["Votar en elecciones nacionales y locales", "Evitar el pago de impuestos", "Organizar fiestas y eventos privados", "Ignorar las leyes"],
+                correct: "Votar en elecciones nacionales y locales",
+                isDefault: true
+            },
+            {
+                question: "La Declaración Universal de Derechos Humanos fue adoptada en:",
+                options: ["1939", "1948", "1960", "1980"],
+                correct: "1948",
+                isDefault: true
+            },
+            {
+                question: "¿En qué año Costa Rica abolió su ejército?",
+                options: ["1821", "1948", "1900", "2000"],
+                correct: "1948",
+                isDefault: true
+            },
+            {
+                question: "¿Qué significa que un país tenga una economía emergente?",
+                options: ["Está en proceso de desarrollo económico y crecimiento", "Es una economía estable y avanzada", "Está en crisis financiera", "Tiene una economía basada en agricultura solamente"],
+                correct: "Está en proceso de desarrollo económico y crecimiento",
+                isDefault: true
+            },
+            {
+                question: "Un tratado de libre comercio busca principalmente:",
+                options: ["Eliminar o reducir barreras comerciales como aranceles", "Aumentar los impuestos a las importaciones", "Restringir la entrada de productos extranjeros", "Cerrar fronteras para proteger industrias locales"],
+                correct: "Eliminar o reducir barreras comerciales como aranceles",
+                isDefault: true
+            },
+            {
+                question: "La democracia representativa significa que:",
+                options: ["Los ciudadanos eligen a sus representantes para tomar decisiones políticas", "El pueblo decide todo directamente sin intermediarios", "Un solo líder gobierna sin elecciones", "No existen elecciones"],
+                correct: "Los ciudadanos eligen a sus representantes para tomar decisiones políticas",
+                isDefault: true
+            },
+            {
+                question: "¿Cuáles son los tres poderes del Estado en Costa Rica?",
+                options: ["Ejecutivo, Legislativo y Judicial", "Ejecutivo, Militar y Legislativo", "Legislativo, Judicial y Militar", "Ejecutivo, Legislativo y Empresarial"],
+                correct: "Ejecutivo, Legislativo y Judicial",
+                isDefault: true
+            },
+            {
+                question: "La cultura democrática se basa en:",
+                options: ["El respeto a las normas y derechos de todos", "La imposición de ideas sin diálogo", "La exclusión de minorías", "La violencia para lograr objetivos"],
+                correct: "El respeto a las normas y derechos de todos",
+                isDefault: true
+            },
+            {
+                question: "¿Qué permite la iniciativa ciudadana en Costa Rica?",
+                options: ["Proponer leyes o reformas para ser discutidas en la Asamblea Legislativa", "Organizar manifestaciones sin permiso", "Eximir a personas de pagar impuestos", "Nombrar autoridades sin elecciones"],
+                correct: "Proponer leyes o reformas para ser discutidas en la Asamblea Legislativa",
+                isDefault: true
+            },
+            {
+                question: "¿Qué estudia la historia precolombina?",
+                options: ["Los pueblos y culturas antes de la llegada de los españoles", "La historia de Europa", "La historia después de 1800", "Las guerras mundiales"],
+                correct: "Los pueblos y culturas antes de la llegada de los españoles",
+                isDefault: true
+            },
+            {
+                question: "¿En qué año inició la conquista española en América Central?",
+                options: ["1492", "1502", "1821", "1948"],
+                correct: "1502",
+                isDefault: true
+            },
+            {
+                question: "La independencia de Costa Rica se proclamó en:",
+                options: ["1821", "1900", "1948", "1999"],
+                correct: "1821",
+                isDefault: true
+            },
+            {
+                question: "La primera constitución política de Costa Rica fue aprobada en:",
+                options: ["1825", "1949", "1900", "1800"],
+                correct: "1825",
+                isDefault: true
+            },
+            {
+                question: "Los derechos sociales incluyen principalmente:",
+                options: ["Educación, salud y trabajo digno", "Derecho a poseer armas", "Libertad de conducir vehículos", "Pago de impuestos"],
+                correct: "Educación, salud y trabajo digno",
+                isDefault: true
+            },
+            {
+                question: "La Organización de las Naciones Unidas (ONU) fue fundada en:",
+                options: ["1918", "1945", "1990", "2001"],
+                correct: "1945",
+                isDefault: true
+            },
+            {
+                question: "¿Cuál es la principal función del Tribunal Supremo de Elecciones en Costa Rica?",
+                options: ["Organizar y supervisar procesos electorales", "Crear leyes", "Juzgar casos penales", "Administrar hospitales"],
+                correct: "Organizar y supervisar procesos electorales",
+                isDefault: true
+            }
+        ];
+        let quizData = [...defaultQuestions];
+        const storedQuestions = localStorage.getItem('customQuestions');
+        if (storedQuestions) {
+            quizData = [...quizData, ...JSON.parse(storedQuestions)];
+        }
+        let currentQuestion = 0;
+        let score = 0;
+        let xp = 0;
+        let editingIndex = null;
+        const showQuizBtn = document.getElementById('show-quiz-btn');
+        const showManageBtn = document.getElementById('show-manage-btn');
+        const quizContainer = document.getElementById('quiz-container');
+        const scoreContainer = document.getElementById('score-container');
+        const manageContainer = document.getElementById('manage-container');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const feedbackEl = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+        const finalScoreEl = document.getElementById('final-score');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionForm = document.getElementById('question-form');
+        const formQuestion = document.getElementById('form-question');
+        const formOption1 = document.getElementById('form-option1');
+        const formOption2 = document.getElementById('form-option2');
+        const formOption3 = document.getElementById('form-option3');
+        const formOption4 = document.getElementById('form-option4');
+        const formCorrect = document.getElementById('form-correct');
+        const saveQuestionBtn = document.getElementById('save-question-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const formFeedback = document.getElementById('form-feedback');
+        const questionList = document.getElementById('question-list');
+        const progressEl = document.getElementById('progress');
+        const xpEl = document.getElementById('xp');
+        const rewardEl = document.getElementById('reward');
+        function loadQuestion() {
+            if (quizData.length === 0) {
+                questionEl.textContent = 'No hay preguntas disponibles.';
+                optionsEl.innerHTML = '';
+                nextBtn.classList.add('hidden');
+                return;
+            }
+            const currentQuiz = quizData[currentQuestion];
+            questionEl.textContent = currentQuiz.question;
+            optionsEl.innerHTML = '';
+            currentQuiz.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option-btn', 'w-full', 'bg-white', 'p-3', 'rounded-xl', 'text-gray-900', 'font-medium', 'border', 'border-gray-300', 'hover:bg-gray-100', 'transition', 'duration-200');
+                button.addEventListener('click', () => selectOption(option));
+                optionsEl.appendChild(button);
+            });
+            feedbackEl.textContent = '';
+            nextBtn.classList.add('hidden');
+        }
+        function selectOption(selected) {
+            const currentQuiz = quizData[currentQuestion];
+            if (selected === currentQuiz.correct) {
+                feedbackEl.textContent = '¡Correcto! ¡Sigue así! 🎉';
+                feedbackEl.classList.add('text-green-600');
+                score++;
+                xp += 10;
+                updateProgress();
+            } else {
+                feedbackEl.textContent = `Incorrecto. La respuesta correcta es: ${currentQuiz.correct}. ¡Inténtalo de nuevo!`;
+                feedbackEl.classList.add('text-red-600');
+            }
+            optionsEl.querySelectorAll('button').forEach(button => {
+                button.disabled = true;
+                if (button.textContent === currentQuiz.correct) {
+                    button.classList.add('bg-green-100', 'border-green-500');
+                } else if (button.textContent === selected && selected !== currentQuiz.correct) {
+                    button.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+            nextBtn.classList.remove('hidden');
+        }
+        function updateProgress() {
+            const maxXP = quizData.length * 10;
+            const progress = (xp / maxXP) * 100;
+            progressEl.style.width = `${Math.min(progress, 100)}%`;
+            xpEl.textContent = `${xp} XP`;
+        }
+        function showResults() {
+            quizContainer.classList.add('hidden');
+            scoreContainer.classList.remove('hidden');
+            finalScoreEl.textContent = `Tu puntuación: ${score} de ${quizData.length}`;
+            const stars = Math.floor(xp / 10);
+            rewardEl.textContent = `¡Ganaste ${xp} XP y ${stars} estrellas! 🎉`;
+        }
+        function loadQuestionList() {
+            questionList.innerHTML = '';
+            quizData.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.classList.add('question-item');
+                div.innerHTML = `
+                    <span class="text-gray-700">${q.question}</span>
+                    <div class="space-x-2">
+                        <button class="edit-btn bg-yellow-500 text-white py-2 px-4 rounded-xl hover:bg-yellow-600" data-index="${index}">Editar</button>
+                        ${!q.isDefault ? `<button class="delete-btn bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600" data-index="${index}">Eliminar</button>` : ''}
+                    </div>
+                `;
+                questionList.appendChild(div);
+            });
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => editQuestion(parseInt(btn.dataset.index)));
+            });
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => deleteQuestion(parseInt(btn.dataset.index)));
+            });
+        }
+        function editQuestion(index) {
+            editingIndex = index;
+            const q = quizData[index];
+            formQuestion.value = q.question;
+            formOption1.value = q.options[0];
+            formOption2.value = q.options[1];
+            formOption3.value = q.options[2];
+            formOption4.value = q.options[3];
+            formCorrect.value = q.options.indexOf(q.correct);
+            saveQuestionBtn.textContent = 'Actualizar Pregunta';
+            cancelEditBtn.classList.remove('hidden');
+            formFeedback.textContent = '';
+        }
+        function deleteQuestion(index) {
+            if (quizData[index].isDefault) return;
+            quizData.splice(index, 1);
+            updateLocalStorage();
+            loadQuestionList();
+            formFeedback.textContent = 'Pregunta eliminada con éxito.';
+            formFeedback.classList.add('text-green-600');
+        }
+        function saveQuestion() {
+            const question = formQuestion.value.trim();
+            const options = [
+                formOption1.value.trim(),
+                formOption2.value.trim(),
+                formOption3.value.trim(),
+                formOption4.value.trim()
+            ];
+            const correctIndex = parseInt(formCorrect.value);
+            if (!question || options.some(opt => !opt) || isNaN(correctIndex)) {
+                formFeedback.textContent = 'Por favor, completa todos los campos y selecciona una respuesta correcta.';
+                formFeedback.classList.add('text-red-600');
+                return;
+            }
+            const newQuestion = {
+                question,
+                options,
+                correct: options[correctIndex],
+                isDefault: false
+            };
+            if (editingIndex !== null) {
+                if (quizData[editingIndex].isDefault) {
+                    quizData.push(newQuestion);
+                } else {
+                    quizData[editingIndex] = newQuestion;
+                }
+                editingIndex = null;
+                saveQuestionBtn.textContent = 'Guardar Pregunta';
+                cancelEditBtn.classList.add('hidden');
+            } else {
+                quizData.push(newQuestion);
+            }
+            updateLocalStorage();
+            loadQuestionList();
+            formFeedback.textContent = 'Pregunta guardada con éxito.';
+            formFeedback.classList.add('text-green-600');
+            formQuestion.value = '';
+            formOption1.value = '';
+            formOption2.value = '';
+            formOption3.value = '';
+            formOption4.value = '';
+            formCorrect.value = '';
+        }
+        function updateLocalStorage() {
+            const customQuestions = quizData.filter(q => !q.isDefault);
+            localStorage.setItem('customQuestions', JSON.stringify(customQuestions));
+        }
+        showQuizBtn.addEventListener('click', () => {
+            quizContainer.classList.remove('hidden');
+            scoreContainer.classList.add('hidden');
+            manageContainer.classList.add('hidden');
+            loadQuestion();
+        });
+        showManageBtn.addEventListener('click', () => {
+            quizContainer.classList.add('hidden');
+            scoreContainer.classList.add('hidden');
+            manageContainer.classList.remove('hidden');
+            loadQuestionList();
+        });
+        nextBtn.addEventListener('click', () => {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            xp = 0;
+            quizContainer.classList.remove('hidden');
+            scoreContainer.classList.add('hidden');
+            updateProgress();
+            loadQuestion();
+        });
+        saveQuestionBtn.addEventListener('click', saveQuestion);
+        cancelEditBtn.addEventListener('click', () => {
+            editingIndex = null;
+            saveQuestionBtn.textContent = 'Guardar Pregunta';
+            cancelEditBtn.classList.add('hidden');
+            formQuestion.value = '';
+            formOption1.value = '';
+            formOption2.value = '';
+            formOption3.value = '';
+            formOption4.value = '';
+            formCorrect.value = '';
+            formFeedback.textContent = '';
+        });
+        loadQuestion();
+    </script>
+</body>
+</html>
