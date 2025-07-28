@@ -73,6 +73,31 @@
     </style>
 </head>
 <body>
+        <script>
+        // URL del archivo menu.html en GitHub (usa el enlace RAW)
+        const menuUrl = 'https://raw.githubusercontent.com/DisgoDev137/DisgoDev137.github.io/main/menu.html';
+
+        // Función para cargar el menú
+        function loadMenu() {
+            fetch(menuUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al cargar el menú');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('menu-container').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('menu-container').innerHTML = '<p>Error al cargar el menú.</p>';
+                });
+        }
+
+        // Cargar el menú cuando la página se cargue
+        window.onload = loadMenu;
+    </script>
     <div class="container">
         <h1>Skillify</h1>
         <p>Elige una materia para comenzar</p>
