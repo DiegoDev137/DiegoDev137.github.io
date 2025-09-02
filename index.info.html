@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Skillify - Aprende y Progresa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://i.pinimg.com/1200x/a3/db/6e/a3db6e035942f87dc67e02144c8ff6af.jpg');
+            background-size: cover;
+            position: relative;
+            padding: 50px 0px 50px;
+            background-attachment: fixed;
+            background-blend-mode: darken;
+            background-color: #0000006e;
+        }
+        .btn-primary {
+            background: linear-gradient(to right,#1c1c1c, #4b5563);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary {
+            background: linear-gradient(to right, #6B7280, #4B5563);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.637);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-radius: 1rem;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .option-btn {
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .option-btn:hover {
+            transform: scale(1.02);
+            background-color: #E5E7EB;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #D1D5DB;
+            border-radius: 5px;
+        }
+        .progress {
+            height: 100%;
+            background: #F59E0B;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+        .question-item {
+            border: 1px solid #F59E0B;
+            background-color: #FFFFFF;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input, select {
+            background-color: #FFFFFF;
+            border: 1px solid #D1D5DB;
+        }
+        input:focus, select:focus {
+            border-color: #F59E0B;
+            ring: 2px #F59E0B;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="card p-8 w-full max-w-3xl rounded-2xl">
+        <h1 class="text-4xl font-bold text-center text-gray-900 mb-8">Quiz Skillify</h1>
+        <div class="w-full mb-6">
+            <div class="text-sm text-gray-600 mb-1">Progreso: <span id="xp">0 XP</span></div>
+            <div class="progress-bar">
+                <div id="progress" class="progress" style="width: 0%"></div>
+            </div>
+        </div>
+        <div class="flex justify-center space-x-6 mb-8">
+            <button id="show-quiz-btn" class="btn-primary text-white py-3 px-6 rounded-xl font-semibold">Jugar Quiz</button>
+            <button id="show-manage-btn" class="btn-secondary text-white py-3 px-6 rounded-xl font-semibold">Gestionar Preguntas</button>
+        </div>
+        <div id="quiz-container">
+            <h2 id="question" class="text-2xl font-semibold text-gray-900 mb-6"></h2>
+            <div id="options" class="space-y-3"></div>
+            <div id="feedback" class="mt-6 text-center text-lg"></div>
+            <button id="next-btn" class="mt-8 w-full btn-primary text-white py-3 rounded-xl font-semibold hidden">Siguiente</button>
+        </div>
+        <div id="score-container" class="hidden mt-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900">¡Quiz Completado!</h2>
+            <p id="final-score" class="text-xl text-gray-700 mt-4"></p>
+            <p id="reward" class="text-lg text-gray-600 mt-2">¡Ganaste 0 XP y 0 estrellas! 🎉</p>
+            <button id="restart-btn" class="mt-6 btn-primary text-white py-3 px-6 rounded-xl font-semibold">Reiniciar Quiz</button>
+        </div>
+        <div id="manage-container" class="hidden">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Gestionar Preguntas</h2>
+            <div id="question-form" class="space-y-5">
+                <div>
+                    <label for="form-question" class="block text-lg font-medium text-gray-700">Pregunta:</label>
+                    <input type="text" id="form-question" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Escribe tu pregunta aquí" required>
+                </div>
+                <div>
+                    <label for="form-option1" class="block text-lg font-medium text-gray-700">Opción 1:</label>
+                    <input type="text" id="form-option1" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 1" required>
+                </div>
+                <div>
+                    <label for="form-option2" class="block text-lg font-medium text-gray-700">Opción 2:</label>
+                    <input type="text" id="form-option2" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 2" required>
+                </div>
+                <div>
+                    <label for="form-option3" class="block text-lg font-medium text-gray-700">Opción 3:</label>
+                    <input type="text" id="form-option3" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 3" required>
+                </div>
+                <div>
+                    <label for="form-option4" class="block text-lg font-medium text-gray-700">Opción 4:</label>
+                    <input type="text" id="form-option4" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" placeholder="Opción 4" required>
+                </div>
+                <div>
+                    <label for="form-correct" class="block text-lg font-medium text-gray-700">Respuesta Correcta:</label>
+                    <select id="form-correct" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500" required>
+                        <option value="">Selecciona la respuesta correcta</option>
+                        <option value="0">Opción 1</option>
+                        <option value="1">Opción 2</option>
+                        <option value="2">Opción 3</option>
+                        <option value="3">Opción 4</option>
+                    </select>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="save-question-btn" class="w-full btn-primary text-white py-3 rounded-xl font-semibold">Guardar Pregunta</button>
+                    <button id="cancel-edit-btn" class="hidden w-full btn-secondary text-white py-3 rounded-xl font-semibold">Cancelar Edición</button>
+                </div>
+                <div id="form-feedback" class="mt-4 text-center text-lg"></div>
+            </div>
+            <div id="question-list" class="mt-8 space-y-4"></div>
+        </div>
+    </div>
+    <script>
+        const defaultQuestions = [
+            {
+                question: "¿Qué lenguaje de programación es conocido por su uso en desarrollo web?",
+                options: ["Python", "JavaScript", "C++", "Java"],
+                correct: "JavaScript",
+                isDefault: true
+            },
+            {
+                question: "¿Qué significa la sigla 'HTML'?",
+                options: ["Hyper Text Markup Language", "High Technology Modern Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"],
+                correct: "Hyper Text Markup Language",
+                isDefault: true
+            },
+            {
+                question: "¿Qué tipo de software gestiona los recursos de una computadora?",
+                options: ["Aplicación", "Sistema operativo", "Juego", "Controlador"],
+                correct: "Sistema operativo",
+                isDefault: true
+            },
+            {
+                question: "¿Qué protocolo se usa para transferir páginas web?",
+                options: ["FTP", "HTTP", "SMTP", "POP3"],
+                correct: "HTTP",
+                isDefault: true
+            },
+            {
+                question: "¿Qué es un archivo con extensión '.exe'?",
+                options: ["Documento de texto", "Archivo ejecutable", "Imagen", "Hoja de cálculo"],
+                correct: "Archivo ejecutable",
+                isDefault: true
+            },
+            {
+                question: "¿Qué componente de una computadora almacena datos a largo plazo?",
+                options: ["RAM", "Procesador", "Disco duro", "Tarjeta gráfica"],
+                correct: "Disco duro",
+                isDefault: true
+            },
+            {
+                question: "¿Qué lenguaje de programación es orientado a objetos?",
+                options: ["HTML", "Python", "CSS", "SQL"],
+                correct: "Python",
+                isDefault: true
+            },
+            {
+                question: "¿Qué significa 'IP' en el contexto de redes?",
+                options: ["Internet Protocol", "Internal Processor", "Integrated Program", "Information Packet"],
+                correct: "Internet Protocol",
+                isDefault: true
+            },
+            {
+                question: "¿Qué dispositivo conecta diferentes redes?",
+                options: ["Router", "Switch", "Hub", "Modem"],
+                correct: "Router",
+                isDefault: true
+            },
+            {
+                question: "¿Qué es un bug en programación?",
+                options: ["Una nueva característica", "Un error en el código", "Un tipo de archivo", "Un comando especial"],
+                correct: "Un error en el código",
+                isDefault: true
+            },
+            {
+                question: "¿Qué lenguaje se usa principalmente para estilizar páginas web?",
+                options: ["HTML", "CSS", "JavaScript", "Python"],
+                correct: "CSS",
+                isDefault: true
+            },
+            {
+                question: "¿Qué es un sistema de gestión de bases de datos?",
+                options: ["Un juego", "Un software para organizar datos", "Un editor de texto", "Un antivirus"],
+                correct: "Un software para organizar datos",
+                isDefault: true
+            },
+            {
+                question: "¿Qué significa 'URL'?",
+                options: ["Universal Resource Locator", "Uniform Resource Link", "Unified Resource Language", "User Resource Location"],
+                correct: "Universal Resource Locator",
+                isDefault: true
+            },
+            {
+                question: "¿Qué componente de una computadora realiza los cálculos?",
+                options: ["RAM", "Disco duro", "Procesador", "Monitor"],
+                correct: "Procesador",
+                isDefault: true
+            },
+            {
+                question: "¿Qué es un firewall?",
+                options: ["Un tipo de virus", "Una barrera de seguridad", "Un sistema operativo", "Un navegador"],
+                correct: "Una barrera de seguridad",
+                isDefault: true
+            },
+            {
+                question: "¿Qué lenguaje de programación se usa para desarrollar aplicaciones Android?",
+                options: ["Swift", "Java", "C#", "Ruby"],
+                correct: "Java",
+                isDefault: true
+            },
+            {
+                question: "¿Qué es un 'byte'?",
+                options: ["Una unidad de memoria", "Un tipo de procesador", "Un programa", "Un cable"],
+                correct: "Una unidad de memoria",
+                isDefault: true
+            },
+            {
+                question: "¿Qué significa 'API' en desarrollo de software?",
+                options: ["Application Programming Interface", "Advanced Programming Integration", "Automated Process Instruction", "Application Process Interface"],
+                correct: "Application Programming Interface",
+                isDefault: true
+            },
+            {
+                question: "¿Qué tipo de memoria se pierde al apagar la computadora?",
+                options: ["ROM", "RAM", "Disco duro", "SSD"],
+                correct: "RAM",
+                isDefault: true
+            },
+            {
+                question: "¿Qué es un sistema operativo de código abierto?",
+                options: ["Windows", "Linux", "macOS", "iOS"],
+                correct: "Linux",
+                isDefault: true
+            }
+        ];
+        let quizData = [...defaultQuestions];
+        const storedQuestions = localStorage.getItem('customQuestions');
+        if (storedQuestions) {
+            quizData = [...quizData, ...JSON.parse(storedQuestions)];
+        }
+        let currentQuestion = 0;
+        let score = 0;
+        let xp = 0;
+        let editingIndex = null;
+        const showQuizBtn = document.getElementById('show-quiz-btn');
+        const showManageBtn = document.getElementById('show-manage-btn');
+        const quizContainer = document.getElementById('quiz-container');
+        const scoreContainer = document.getElementById('score-container');
+        const manageContainer = document.getElementById('manage-container');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const feedbackEl = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+        const finalScoreEl = document.getElementById('final-score');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionForm = document.getElementById('question-form');
+        const formQuestion = document.getElementById('form-question');
+        const formOption1 = document.getElementById('form-option1');
+        const formOption2 = document.getElementById('form-option2');
+        const formOption3 = document.getElementById('form-option3');
+        const formOption4 = document.getElementById('form-option4');
+        const formCorrect = document.getElementById('form-correct');
+        const saveQuestionBtn = document.getElementById('save-question-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const formFeedback = document.getElementById('form-feedback');
+        const questionList = document.getElementById('question-list');
+        const progressEl = document.getElementById('progress');
+        const xpEl = document.getElementById('xp');
+        const rewardEl = document.getElementById('reward');
+        function loadQuestion() {
+            if (quizData.length === 0) {
+                questionEl.textContent = 'No hay preguntas disponibles.';
+                optionsEl.innerHTML = '';
+                nextBtn.classList.add('hidden');
+                return;
+            }
+            const currentQuiz = quizData[currentQuestion];
+            questionEl.textContent = currentQuiz.question;
+            optionsEl.innerHTML = '';
+            currentQuiz.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option-btn', 'w-full', 'bg-white', 'p-3', 'rounded-xl', 'text-gray-900', 'font-medium', 'border', 'border-gray-300', 'hover:bg-gray-100', 'transition', 'duration-200');
+                button.addEventListener('click', () => selectOption(option));
+                optionsEl.appendChild(button);
+            });
+            feedbackEl.textContent = '';
+            nextBtn.classList.add('hidden');
+        }
+        function selectOption(selected) {
+            const currentQuiz = quizData[currentQuestion];
+            if (selected === currentQuiz.correct) {
+                feedbackEl.textContent = '¡Correcto! ¡Sigue así! 🎉';
+                feedbackEl.classList.add('text-green-600');
+                score++;
+                xp += 10;
+                updateProgress();
+            } else {
+                feedbackEl.textContent = `Incorrecto. La respuesta correcta es: ${currentQuiz.correct}. ¡Inténtalo de nuevo!`;
+                feedbackEl.classList.add('text-red-600');
+            }
+            optionsEl.querySelectorAll('button').forEach(button => {
+                button.disabled = true;
+                if (button.textContent === currentQuiz.correct) {
+                    button.classList.add('bg-green-100', 'border-green-500');
+                } else if (button.textContent === selected && selected !== currentQuiz.correct) {
+                    button.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+            nextBtn.classList.remove('hidden');
+        }
+        function updateProgress() {
+            const maxXP = quizData.length * 10;
+            const progress = (xp / maxXP) * 100;
+            progressEl.style.width = `${Math.min(progress, 100)}%`;
+            xpEl.textContent = `${xp} XP`;
+        }
+        function showResults() {
+            quizContainer.classList.add('hidden');
+            scoreContainer.classList.remove('hidden');
+            finalScoreEl.textContent = `Tu puntuación: ${score} de ${quizData.length}`;
+            const stars = Math.floor(xp / 10);
+            rewardEl.textContent = `¡Ganaste ${xp} XP y ${stars} estrellas! 🎉`;
+        }
+        function loadQuestionList() {
+            questionList.innerHTML = '';
+            quizData.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.classList.add('question-item');
+                div.innerHTML = `
+                    <span class="text-gray-700">${q.question}</span>
+                    <div class="space-x-2">
+                        <button class="edit-btn bg-yellow-500 text-white py-2 px-4 rounded-xl hover:bg-yellow-600" data-index="${index}">Editar</button>
+                        ${!q.isDefault ? `<button class="delete-btn bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600" data-index="${index}">Eliminar</button>` : ''}
+                    </div>
+                `;
+                questionList.appendChild(div);
+            });
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => editQuestion(parseInt(btn.dataset.index)));
+            });
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => deleteQuestion(parseInt(btn.dataset.index)));
+            });
+        }
+        function editQuestion(index) {
+            editingIndex = index;
+            const q = quizData[index];
+            formQuestion.value = q.question;
+            formOption1.value = q.options[0];
+            formOption2.value = q.options[1];
+            formOption3.value = q.options[2];
+            formOption4.value = q.options[3];
+            formCorrect.value = q.options.indexOf(q.correct);
+            saveQuestionBtn.textContent = 'Actualizar Pregunta';
+            cancelEditBtn.classList.remove('hidden');
+            formFeedback.textContent = '';
+        }
+        function deleteQuestion(index) {
+            if (quizData[index].isDefault) return;
+            quizData.splice(index, 1);
+            updateLocalStorage();
+            loadQuestionList();
+            formFeedback.textContent = 'Pregunta eliminada con éxito.';
+            formFeedback.classList.add('text-green-600');
+        }
+        function saveQuestion() {
+            const question = formQuestion.value.trim();
+            const options = [
+                formOption1.value.trim(),
+                formOption2.value.trim(),
+                formOption3.value.trim(),
+                formOption4.value.trim()
+            ];
+            const correctIndex = parseInt(formCorrect.value);
+            if (!question || options.some(opt => !opt) || isNaN(correctIndex)) {
+                formFeedback.textContent = 'Por favor, completa todos los campos y selecciona una respuesta correcta.';
+                formFeedback.classList.add('text-red-600');
+                return;
+            }
+            const newQuestion = {
+                question,
+                options,
+                correct: options[correctIndex],
+                isDefault: false
+            };
+            if (editingIndex !== null) {
+                if (quizData[editingIndex].isDefault) {
+                    quizData.push(newQuestion);
+                } else {
+                    quizData[editingIndex] = newQuestion;
+                }
+                editingIndex = null;
+                saveQuestionBtn.textContent = 'Guardar Pregunta';
+                cancelEditBtn.classList.add('hidden');
+            } else {
+                quizData.push(newQuestion);
+            }
+            updateLocalStorage();
+            loadQuestionList();
+            formFeedback.textContent = 'Pregunta guardada con éxito.';
+            formFeedback.classList.add('text-green-600');
+            formQuestion.value = '';
+            formOption1.value = '';
+            formOption2.value = '';
+            formOption3.value = '';
+            formOption4.value = '';
+            formCorrect.value = '';
+        }
+        function updateLocalStorage() {
+            const customQuestions = quizData.filter(q => !q.isDefault);
+            localStorage.setItem('customQuestions', JSON.stringify(customQuestions));
+        }
+        showQuizBtn.addEventListener('click', () => {
+            quizContainer.classList.remove('hidden');
+            scoreContainer.classList.add('hidden');
+            manageContainer.classList.add('hidden');
+            loadQuestion();
+        });
+        showManageBtn.addEventListener('click', () => {
+            quizContainer.classList.add('hidden');
+            scoreContainer.classList.add('hidden');
+            manageContainer.classList.remove('hidden');
+            loadQuestionList();
+        });
+        nextBtn.addEventListener('click', () => {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            xp = 0;
+            quizContainer.classList.remove('hidden');
+            scoreContainer.classList.add('hidden');
+            updateProgress();
+            loadQuestion();
+        });
+        saveQuestionBtn.addEventListener('click', saveQuestion);
+        cancelEditBtn.addEventListener('click', () => {
+            editingIndex = null;
+            saveQuestionBtn.textContent = 'Guardar Pregunta';
+            cancelEditBtn.classList.add('hidden');
+            formQuestion.value = '';
+            formOption1.value = '';
+            formOption2.value = '';
+            formOption3.value = '';
+            formOption4.value = '';
+            formCorrect.value = '';
+            formFeedback.textContent = '';
+        });
+        loadQuestion();
+    </script>
+</body>
+</html>
